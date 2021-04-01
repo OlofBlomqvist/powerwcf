@@ -69,8 +69,9 @@ Function New-PowerWcfProxy {
 
     $binding = [System.ServiceModel.BasicHttpBinding]::new()
     $binding.MaxReceivedMessageSize = 999999
-    $t | Where-Object name -ilike "*Client" | ForEach-Object {
-        $serviceClientInstance = [scriptblock]::Create("[$($_.fullname)]::new(`$binding,`$uri)").Invoke()[0]
+    
+    $t | Where-Object basetype -imatch "clientbase*\[WCFPROXY" | ForEach-Object {
+        $serviceClientInstance = [scriptblock]::Create("[$($_.fullname)]::new(`$binding,`$uri)").Invoke()|Select-Object -first 1
         $defaultDisplaySet = $serviceClientInstance|Get-Member -MemberType method | Select-Object -ExpandProperty Name
         $defaultDisplayPropertySet = New-Object System.Management.Automation.PSPropertySet("DefaultDisplayPropertySet",[string[]]$defaultDisplaySet)
         $PSStandardMembers = [System.Management.Automation.PSMemberInfo[]]@($defaultDisplayPropertySet)
