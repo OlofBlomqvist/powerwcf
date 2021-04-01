@@ -10,5 +10,5 @@ You might think of it as a poor mans "new-webserviceproxy" that also works on po
 ```
  > install-package powerwcf
  > $proxy = New-PowerWcfProxy -uri http://test.local/myservice.svc
- > $proxy.myserviceclient.someMethod("test").Result
+ > $proxy.myserviceclient.someMethod("test").Result?singleWsdl
 ```
