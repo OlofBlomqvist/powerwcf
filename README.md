@@ -9,6 +9,15 @@ You might think of it as a poor mans "new-webserviceproxy" that also works on po
 - dotnet sdk 5+ (https://dotnet.microsoft.com/download)
 - powershell 5/6/7 (but probably works on later versions as well)
 
+#### Known Limitations
+- Only supports BasicHttpBinding
+- No support for authentication
+- Service methods returning CultureInfo data (the type changed between .net framework and core)
+
+#### What works
+- Tested on Linux (ubuntu 20.04) running powershell 7.
+- Tested on Windows 10 running powershell 5.
+
 #### Example use in a powershell console:
 
 ```
